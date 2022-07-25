@@ -10,19 +10,20 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
     private lateinit var name:TextView
     private lateinit var age:TextView
-    private lateinit var saveBtn:Button
+    private lateinit var saveBtn1:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         name=findViewById(R.id.name)
         age=findViewById(R.id.age)
-        saveBtn=findViewById(R.id.save)
-        saveBtn.setOnClickListener {
+        saveBtn1=findViewById(R.id.save)
+        saveBtn1.setOnClickListener {
             val sharedPreferences:SharedPreferences=getSharedPreferences("preferences", MODE_PRIVATE)
             val editor=sharedPreferences.edit()
             editor.putString("name",name.text.toString())
             editor.putInt("age",age.text.toString().toInt())
-            editor.commit()
+            //editor.commit()
+            editor.apply()
             intent= Intent(this,SecondActivity::class.java)
             startActivity(intent)
         }
